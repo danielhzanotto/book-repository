@@ -1,64 +1,44 @@
 from tkinter import *
 from brain import Brain
-from ui_consult import Consult
+from ui_append import Interface
+from ui_catalog import Catalog
 
 
-class Interface:
+class Consult:
     def __init__(self, brain: Brain):
-        self.brain = brain
+        self.brain = Brain
+        self.catalog = Catalog
 
-        self.window = Tk()
-        self.window.title("Book Catalog")
-        self.window.config(padx=20, pady=20)
+        self.window_two = Tk()
+        self.window_two.title("Catalog Consult")
+        self.window_two.config(padx=20, pady=20)
 
-        self.book_title_label = Label(text="Book Title:")
-        self.book_title_label.grid(row=1, column=0)
-        self.book_title_entry = Entry(width=40)
-        self.book_title_entry.grid(row=1, column=1)
+        self.append_button = Button(
+            text="Create New Book", command=self.append_book, highlightthickness=0)
+        self.append_button.grid(row=0, column=0, columnspan=4)
 
-        self.author_label = Label(text="Author:")
-        self.author_label.grid(row=2, column=0)
-        self.author_entry = Entry(width=40)
-        self.author_entry.grid(row=2, column=1)
+        self.book_index = Label(text="Book Index", pady=10, padx=5)
+        self.book_index.grid(row=1, column=0)
 
-        self.labels_label = Label(text="Labels:")
-        self.labels_label.grid(row=3, column=0)
-        self.labels_entry = Entry(width=40)
-        self.labels_entry.grid(row=3, column=1)
+        self.book_title = Label(text="Book Title", pady=10, padx=5)
+        self.book_title.grid(row=1, column=1)
 
-        self.checked_state = IntVar()
-        self.already_read_check = Checkbutton(
-            text="Already Read", variable=self.checked_state, command=self.checkbutton_used)
-        self.already_read_check.grid(row=5, column=0)
+        self.book_author = Label(text="Book Author", pady=10, padx=5)
+        self.book_author.grid(row=1, column=2)
 
-        self.register = Button(text="Register Book", command=self.append_book,
-                               highlightthickness=0, width=34)
-        self.register.grid(row=5, column=1)
+        self.book_labels = Label(text="Book Labels", pady=10, padx=5)
+        self.book_labels.grid(row=1, column=3)
 
-        self.consult_books = Button(text="Consult All Books", command=self.consult_all,
-                                    highlightthickness=0, width=34)
-        self.consult_books.grid(row=6, column=1)
+        self.book_read = Label(text="Already Read", pady=10, padx=5)
+        self.book_read.grid(row=1, column=4)
 
-        self.window.mainloop()
+        self.consult_cat = brain.consult_catalog()
+        self.catalog.show_info(self, self.consult_cat)
 
-    def checkbutton_used(self):
-        print(self.checked_state.get())
+        self.window_two.mainloop()
 
     def append_book(self):
-        self.book_data = [{
-            "title": self.book_title_entry.get(),
-            "author": self.author_entry.get(),
-            "labels": self.labels_entry.get(),
-            "read": self.checked_state.get()
-        }]
+        Interface(self.brain, self)
 
-        self.brain.append_new_book(self.book_data)
-
-    def consult_all(self):
-        Consult()
-
-
-# book title
-# book author
-# read?
-# comments
+    def edit_book_func(self):
+        pass
