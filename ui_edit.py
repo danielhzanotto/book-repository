@@ -1,7 +1,7 @@
 from tkinter import *
 
 
-class Interface:
+class Edit:
     def __init__(self, brain, init):
         self.brain = brain
         self.init = init
