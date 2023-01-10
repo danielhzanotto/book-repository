@@ -4,4 +4,4 @@ This is a side project that I created in order to improve my skills at OOP and d
 
 You need to have installed the pandas and tkinter modules in order to run this code.
 
-Run the init.py to start the code
+Run the main.py to start the code
