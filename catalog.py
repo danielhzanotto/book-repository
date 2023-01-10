@@ -6,7 +6,7 @@ class Catalog:
         pass
 
     def show_info(self, info):
-        self.book_list = Listbox(height=5, width=40)
+        self.book_list = Listbox(height=5, width=50)
         self.book_list.grid(row=1, column=0, columnspan=3)
 
         for book in info.itertuples():

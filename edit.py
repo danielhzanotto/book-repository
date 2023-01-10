@@ -22,7 +22,7 @@ class Edit:
         self.author_entry.insert(0, self.data[2])
         self.author_entry.grid(row=2, column=1)
 
-        self.labels_label = Label(self.window_two, text="Labels:")
+        self.labels_label = Label(self.window_two, text="Category:")
         self.labels_label.grid(row=3, column=0)
         self.labels_entry = Entry(self.window_two, width=40)
         self.labels_entry.insert(0, self.data[3])
