@@ -1,6 +1,6 @@
-from ui_init import Consult
+from ui_init import Init
 from brain import Brain
 
 
 brain = Brain()
-catalog = Consult(brain)
+catalog = Init()

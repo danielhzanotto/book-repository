@@ -15,7 +15,7 @@ class Brain:
     def delete_book(self, index):
         df = pd.read_csv("catalog.csv")
         df.drop(int(index), axis=0, inplace=True)
-        df.to_csv("catalog.csv", mode="w", index=False, header=False)
+        df.to_csv("catalog.csv", mode="w", index=False, header=True)
 
     def get_book(self, book_input):
         df = pd.read_csv("catalog.csv")

@@ -1,19 +1,19 @@
 from tkinter import *
 from brain import Brain
-from ui_append import Interface
+from ui_append import Append
 from ui_catalog import Catalog
 from ui_edit import Edit
 
 
-class Consult:
-    def __init__(self, brain: Brain):
+class Init:
+    def __init__(self):
         self.brain = Brain
         self.catalog = Catalog
         self.edit = Edit
 
-        self.window_two = Tk()
-        self.window_two.title("Catalog Consult")
-        self.window_two.config(padx=20, pady=20)
+        self.window = Tk()
+        self.window.title("Catalog Consult")
+        self.window.config(padx=20, pady=20)
 
         self.append_button = Button(
             text="Create New Book", command=self.append_book, highlightthickness=0)
@@ -27,13 +27,13 @@ class Consult:
             text="Delete Book", command=self.delete_book_selected, highlightthickness=0)
         self.delete_book.grid(row=0, column=2)
 
-        self.consult_cat = brain.consult_catalog()
+        self.consult_cat = self.brain.consult_catalog(self)
         self.catalog.show_info(self, self.consult_cat)
 
-        self.window_two.mainloop()
+        self.window.mainloop()
 
     def append_book(self):
-        Interface(self)
+        Append(self)
 
     def edit_book_func(self):
         self.book_input = int(self.book_list.get(
@@ -43,9 +43,12 @@ class Consult:
         self.edit(self, book_selected)
 
     def delete_book_selected(self):
-        pass
+        self.book_input = int(self.book_list.get(
+            self.book_list.curselection())[0])-1
+        self.brain.delete_book(self, self.book_input)
+        self.refresh_window()
 
     def refresh_window(self):
         data = self.brain.consult_catalog(self)
         self.catalog.show_info(self, data)
-        self.window_two.update()
+        self.window.update()
