@@ -17,12 +17,19 @@ class Brain:
         df.drop(int(index), axis=0, inplace=True)
         df.to_csv("catalog.csv", mode="w", index=False, header=False)
 
-    def edit_book(self, book_input):
-        book_obj = df = pd.read_csv("catalog.csv")
+    def get_book(self, book_input):
+        df = pd.read_csv("catalog.csv")
+        for book in df.itertuples():
+            if book[0] == book_input:
+                book_index = book
+        return book_index
 
-        get_book = [book for book in df.itertuples() if book[0] == book_input]
-        print(get_book)
-
-        
-
-        # book_obj.to_csv("catalog.csv", mode="a", index=False, header=False)
+    def refresh_csv(self, book_data):
+        df = pd.read_csv("catalog.csv")
+        book_obj = pd.DataFrame.from_dict(book_data)
+        for book in df.itertuples():
+            if book[0] == self.init.book_input:
+                df.drop(book[0], axis=0, inplace=True)
+                df.to_csv("catalog.csv", mode="w", index=False, header=True)
+                book_obj.to_csv("catalog.csv", mode="a",
+                                index=False, header=False)

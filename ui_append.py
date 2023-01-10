@@ -2,8 +2,7 @@ from tkinter import *
 
 
 class Interface:
-    def __init__(self, brain, init):
-        self.brain = brain
+    def __init__(self, init):
         self.init = init
 
         self.window = Toplevel()
@@ -47,10 +46,8 @@ class Interface:
             "read": self.checked_state.get()
         }]
 
-        self.brain.append_new_book(self, self.book_data)
+        self.init.brain.append_new_book(self, self.book_data)
 
         self.window.destroy()
 
-        data = self.brain.consult_catalog(self)
-        self.init.catalog.show_info(self.init, data)
-        self.init.window_two.update()
+        self.init.refresh_window()
