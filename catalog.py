@@ -5,9 +5,9 @@ class Catalog:
     def __init__(self):
         pass
 
-    def show_info(self, info):
-        self.book_list = Listbox(height=5, width=50)
-        self.book_list.grid(row=1, column=0, columnspan=3)
+    def show_info(self, info, screen):
+        self.book_list = Listbox(master=screen, height=6, width=60)
+        self.book_list.grid(row=4, column=0, columnspan=4)
 
         for book in info.itertuples():
 
@@ -17,4 +17,4 @@ class Catalog:
                 read = "V"
 
             self.book_list.insert(
-                book[0], f"{book[0]+1}: {book[1]} ({book[2]})")
+                book[0], f"{book[0]+1}: {book[2]} ({book[3]})")

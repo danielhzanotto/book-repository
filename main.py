@@ -3,6 +3,7 @@ from brain import Brain
 from append import Append
 from catalog import Catalog
 from edit import Edit
+from search import Search
 
 
 class Init:
@@ -10,6 +11,7 @@ class Init:
         self.brain = Brain
         self.catalog = Catalog
         self.edit = Edit
+        self.search = Search
 
         self.window = Tk()
         self.window.title("Catalog Consult")
@@ -27,18 +29,25 @@ class Init:
             text="Delete Book", command=self.delete_book_selected, highlightthickness=0)
         self.delete_book.grid(row=0, column=2)
 
+        self.search_book = Button(
+            text="Search Book", command=self.search_book, highlightthickness=0)
+        self.search_book.grid(row=0, column=3)
+
         self.consult_cat = self.brain.consult_catalog(self)
-        self.catalog.show_info(self, self.consult_cat)
+        self.catalog.show_info(self, self.consult_cat, self.window)
 
         self.window.mainloop()
 
     def append_book(self):
         Append(self)
 
+    def search_book(self):
+        Search(self)
+
     def edit_book_func(self):
         self.book_input = self.list_input()
-        book_selected = self.brain.get_book(self, self.book_input)
-        self.edit(self, book_selected)
+        self.book_selected = self.brain.get_book(self, self.book_input)
+        self.edit(self, self.book_selected)
 
     def delete_book_selected(self):
         self.book_input = self.list_input()
@@ -47,7 +56,7 @@ class Init:
 
     def refresh_window(self):
         data = self.brain.consult_catalog(self)
-        self.catalog.show_info(self, data)
+        self.catalog.show_info(self, data, self.window)
         self.window.update()
 
     def list_input(self):
