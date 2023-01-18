@@ -1,0 +1,31 @@
+login #TODO:
+    # create a email validation
+        @ after creating account, send email with code to paste on entry and enable login
+        @ if not validated, when click on login it will ask for the validation code
+
+
+main user page:
+	# listbox with personal list
+    # radio "order by"
+	# button "add book to personal list"
+		@ show all the catalog
+        @ button "add book to personal list"
+            - keywords
+            - already read?
+            - button "cancel"
+		@ button "search book"
+            - already exists, but at the end, instead of edit, create button "add book to list"
+            - add button "cancel"
+        @ button "edit book"
+            - button "delete book"
+            - button "cancel"
+        @ button "create new book"
+            - remove the keywords and the already read check
+            - button "cancel"
+	# button "remove book from personal list"
+    # button "edit book"
+        @ edit keywords and already read check
+        @ button "cancel"
+    # button "search book"
+        @ button "edit book"
+        @ button "cancel"

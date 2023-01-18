@@ -1,0 +1,8 @@
+{
+  "test": { "password": "test", "email": "test@gmail.com", "books": [] },
+  "daniel": {
+    "password": "danielsenha",
+    "email": "danielhaas94@gmail.com",
+    "books": []
+  }
+}

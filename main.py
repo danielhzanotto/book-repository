@@ -1,5 +1,5 @@
 from tkinter import *
-from brain import Brain
+from book_brain import Brain
 from append import Append
 from catalog import Catalog
 from edit import Edit
@@ -17,20 +17,20 @@ class Init:
         self.window.title("Catalog Consult")
         self.window.config(padx=20, pady=20)
 
-        self.append_button = Button(
-            text="Create New Book", command=self.append_book, highlightthickness=0)
+        self.append_button = Button(self.window,
+                                    text="Create New Book", command=self.append_book, highlightthickness=0)
         self.append_button.grid(row=0, column=0)
 
-        self.edit_book = Button(
-            text="Edit Book", command=self.edit_book_func, highlightthickness=0)
+        self.edit_book = Button(self.window,
+                                text="Edit Book", command=self.edit_book_func, highlightthickness=0)
         self.edit_book.grid(row=0, column=1)
 
-        self.delete_book = Button(
-            text="Delete Book", command=self.delete_book_selected, highlightthickness=0)
+        self.delete_book = Button(self.window,
+                                  text="Delete Book", command=self.delete_book_selected, highlightthickness=0)
         self.delete_book.grid(row=0, column=2)
 
-        self.search_book = Button(
-            text="Search Book", command=self.search_book, highlightthickness=0)
+        self.search_book = Button(self.window,
+                                  text="Search Book", command=self.search_book, highlightthickness=0)
         self.search_book.grid(row=0, column=3)
 
         self.consult_cat = self.brain.consult_catalog(self)
@@ -61,6 +61,3 @@ class Init:
 
     def list_input(self):
         return int(self.book_list.get(self.book_list.curselection())[0])-1
-
-
-catalog = Init()

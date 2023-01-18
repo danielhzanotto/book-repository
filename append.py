@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 
 class Append:
@@ -57,7 +58,7 @@ class Append:
         if hasattr(self.init.brain, "book_dict"):
             book_key = self.init.brain.book_dict["key"]
         else:
-            book_key = 000
+            book_key = random.randint(1000, 99999)
 
         self.book_data = {
 
