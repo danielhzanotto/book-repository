@@ -1,0 +1,11 @@
+import json
+
+with open("users.json", mode="r+") as f:
+    file = json.load(f)
+    users = [user for user in list(file)]
+    print(users)
+
+with open("users.json", mode="r+") as f:
+    file = json.load(f)
+    for users in file:
+        print(users)

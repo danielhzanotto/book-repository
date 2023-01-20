@@ -1,8 +1,16 @@
 {
-  "test": { "password": "test", "email": "test@gmail.com", "books": [] },
   "daniel": {
     "password": "danielsenha",
-    "email": "danielhaas94@gmail.com",
-    "books": []
+    "email": "daniel@gmail.com",
+    "validation-code": 123456,
+    "validate": 1,
+    "books": {}
+  },
+  "karyse": {
+    "password": "karysesenha",
+    "email": "karyse@gmail.com",
+    "validation-code": 501884,
+    "validate": 0,
+    "books": {}
   }
 }

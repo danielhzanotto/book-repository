@@ -1,10 +1,17 @@
-login #TODO:
-    # create a email validation
-        @ after creating account, send email with code to paste on entry and enable login
-        @ if not validated, when click on login it will ask for the validation code
+BIGGEST TODO:
+    # transfer all data to sheety
+    # reformulate all userpage
 
+login:
+    # enter username and password to login
+        @ if account not activated, enter activation screen
+    # create new account with username, password and email
+        @ recieve activation code via email
+        @ enter activation screen
+    # forgot password
+        @ send input email (if exists on database) with existing password
 
-main user page:
+TODO on main user page:
 	# listbox with personal list
     # radio "order by"
 	# button "add book to personal list"

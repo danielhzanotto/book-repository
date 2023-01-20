@@ -52,10 +52,7 @@ class Login:
         else:
             user = [self.user_entry.get(), self.password_entry.get()]
             valid = UserBrain.check_user(self, user)
-        if valid == "validate":
-            UserBrain.raise_invalid_account(self)
-            Validation()
-        elif valid == True:
+        if valid:
             self.window_login.destroy()
             Init()
 
@@ -63,8 +60,8 @@ class Login:
         CreateUser()
 
     def checkbutton_login(self):
-        UserBrain.checkbutton_used(self, self.checked_state,
-                                   self.password_entry, self.window_login)
+        Func.checkbutton_used(self, self.checked_state,
+                              self.password_entry, self.window_login)
 
 
 class CreateUser:
@@ -110,25 +107,15 @@ class CreateUser:
         self.user_data = {self.create_user_entry.get(): {
             "password": self.create_password_entry.get(),
             "email": self.email_entry.get(),
-            "validation-code": int(self.generate_validation_code()),
-            "validate": 0,
-            "books": {}
+            "books": []
         }}
         success = UserBrain.append_user(self, self.user_data)
         if success:
             self.window_create.destroy()
-            Validation()
 
     def checkbutton_create(self):
-        UserBrain.checkbutton_used(self, self.checked_state,
-                                   self.create_password_entry, self.window_create)
-
-    def generate_validation_code(self):
-        from random import randint
-        code = ""
-        while len(code) < 6:
-            code += str(randint(0, 9))
-        return code
+        Func.checkbutton_used(self, self.checked_state,
+                              self.create_password_entry, self.window_create)
 
 
 class Recover:
@@ -154,45 +141,16 @@ class Recover:
             self.window_recover.destroy()
 
 
-class Validation:
+class Func:
     def __init__(self):
-        self.window_validation = Toplevel()
-        self.window_validation.title("Validation Code")
-        self.window_validation.config(padx=20, pady=20)
+        pass
 
-        self.code_label = Label(self.window_validation,
-                                text="Please enter your validation code: ")
-        self.code_label.grid(row=0, column=0)
-
-        self.code_entry = Entry(self.window_validation, width=40)
-        self.code_entry.grid(row=0, column=1)
-
-        self.code_button = Button(self.window_validation, text="Validate your account",
-                                  command=self.validate_account, highlightthickness=0, width=34)
-        self.code_button.grid(row=1, column=1)
-
-        self.resend_label = Label(self.window_validation,
-                                  text="Check if the email is at the spam box.\nIf you didn't recieve or lost your validation code,\nenter your email and click 'Send Code' to send again")
-        self.resend_label.grid(row=2, column=0, columnspan=2)
-
-        self.email_resend_entry = Entry(self.window_validation, width=40)
-        self.email_resend_entry.grid(row=3, column=0)
-
-        self.resend_button = Button(self.window_validation, text="Send Code",
-                                    command=self.send_code_again, highlightthickness=0, width=34)
-        self.resend_button.grid(row=3, column=1)
-
-        self.window_validation.mainloop()
-
-    def validate_account(self):
-        self.code = self.code_entry.get()
-        success = UserBrain.validate_user_account(self, self.code)
-        if success:
-            self.window_validation.destroy()
-
-    def send_code_again(self):
-        self.email_resend = self.email_resend_entry.get()
-        UserBrain.send_new_code(self, self.email_resend)
+    def checkbutton_used(self, state, entry, window):
+        if state.get() == 0:
+            entry.config(show="*")
+        elif state.get() == 1:
+            entry.config(show="")
+        window.update()
 
 
 Login()
