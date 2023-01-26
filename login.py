@@ -57,7 +57,7 @@ class Login:
             Validation()
         elif valid == True:
             self.window_login.destroy()
-            Init()
+            Init(user[0])
 
     def create_user_log(self):
         CreateUser()
@@ -112,7 +112,7 @@ class CreateUser:
             "email": self.email_entry.get(),
             "validation-code": int(self.generate_validation_code()),
             "validate": 0,
-            "books": {}
+            "books": {},
         }}
         success = UserBrain.append_user(self, self.user_data)
         if success:

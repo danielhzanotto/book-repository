@@ -1,6 +1,6 @@
-BIGGEST TODO:
-    # transfer all data to sheety
-    # reformulate all userpage
+TODO
+    # order by
+    # add book by personal list
 
 login:
     # enter username and password to login
@@ -11,28 +11,29 @@ login:
     # forgot password
         @ send input email (if exists on database) with existing password
 
-TODO on main user page:
+main user page:
 	# listbox with personal list
-    # radio "order by"
+    # radio "order by" (TODO)
 	# button "add book to personal list"
 		@ show all the catalog
         @ button "add book to personal list"
             - keywords
             - already read?
-            - button "cancel"
+            - score
+            - cancel
 		@ button "search book"
-            - already exists, but at the end, instead of edit, create button "add book to list"
-            - add button "cancel"
+            - add book to list
+            - edit book
+            - cancel
         @ button "edit book"
-            - button "delete book"
-            - button "cancel"
+            - button cancel
         @ button "create new book"
-            - remove the keywords and the already read check
             - button "cancel"
 	# button "remove book from personal list"
     # button "edit book"
         @ edit keywords and already read check
         @ button "cancel"
+        @ add score
     # button "search book"
         @ button "edit book"
         @ button "cancel"

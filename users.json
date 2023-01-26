@@ -1,16 +1,1 @@
-{
-  "daniel": {
-    "password": "danielsenha",
-    "email": "daniel@gmail.com",
-    "validation-code": 123456,
-    "validate": 1,
-    "books": {}
-  },
-  "karyse": {
-    "password": "karysesenha",
-    "email": "karyse@gmail.com",
-    "validation-code": 501884,
-    "validate": 0,
-    "books": {}
-  }
-}
+{"daniel":{"password":"danielsenha","email":"daniel@gmail.com","validation-code":123456,"validate":1,"books":{"OL2163649W":{"keywords":"Ficcao Cientifica, Comedia, Nonsense","already":1,"score":8},"OL82563W":{"keywords":"Fantasia, Bruxaria, Adolescente","already":1,"score":8},"OL66554W":{"keywords":"Drama, Historical Romance","already":0,"score":0},"OL82577W":{"keywords":"Bruxaria","already":1,"score":8}}},"karyse":{"password":"karysesenha","email":"karyse@gmail.com","validation-code":501884,"validate":1,"books":{"OL26417488W":{"keywords":"ficcao cientifica, classico","already":1,"score":8},"OL262758W":{"keywords":"fantasia, terra media","already":0,"score":7},"OL1168083W":{"keywords":"Gostei Bastante","already":1,"score":8}}}}

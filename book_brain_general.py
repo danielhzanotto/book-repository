@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import requests
+from tkinter import messagebox
 
 
 class Brain:
@@ -38,9 +39,7 @@ class Brain:
         return {
             "key": book["key"].split("/")[-1],
             "title": book["title"],
-            "author": author["name"],
-            "keywords": "",
-            "already": 0
+            "author": author["name"]
         }
 
     def add_to_file(self, book):
@@ -64,23 +63,35 @@ class Brain:
                 print("ok")
                 df.loc[book[0], "title"] = book_data["title"]
                 df.loc[book[0], "author"] = book_data["author"]
-                df.loc[book[0], "keywords"] = book_data["keywords"]
-                df.loc[book[0], "already"] = book_data["already"]
                 df.to_csv("books.csv", mode="w", index=False, header=True)
 
-    def delete_book(self, index):
-        df = pd.read_csv("books.csv")
-        df.drop(int(index), axis=0, inplace=True)
-        df.to_csv("books.csv", mode="w", index=False, header=True)
-
-    def get_search_books(value, search, read):
+    def get_search_books(value, search):
         df = pd.read_csv("books.csv")
         if value == 1:
             df_2 = df[df["title"].str.contains(search)]
         elif value == 2:
             df_2 = df[df["author"].str.contains(search)]
-        elif value == 3:
-            df_2 = df[df["keywords"].str.contains(search)]
-        elif value == 4:
-            df_2 = df[df["already"] == read - 1]
         return df_2
+
+    def add_book_user(self, book, user, window):
+        users = pd.read_json("users.json")
+        if book[1] in users[user]["books"]:
+            self.raise_book_already(self, window)
+            return ""
+        else:
+            users[user]["books"][book[1]] = {
+                "keywords": "", "already": 0, "score": 0}
+            users.to_json("users.json")
+            return {"key": book[1], "title": book[2], "author": book[3], "keywords": "", "already": 0, "score": 0}
+
+    def raise_book_already(self, window):
+        messagebox.showinfo(parent=window,
+                            title="Oops", message="You already have this book in your list!")
+
+    def get_repeated_keys(key):
+        df = pd.read_csv("books.csv")
+        repeat = [str(k) for k in df["key"] if str(k) == key]
+        if len(repeat) == 0:
+            return False
+        else:
+            return True

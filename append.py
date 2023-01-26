@@ -24,24 +24,15 @@ class Append:
         self.author_entry = Entry(self.window_three, width=40)
         self.author_entry.grid(row=3, column=1)
 
-        self.labels_label = Label(self.window_three, text="Keywords:")
-        self.labels_label.grid(row=4, column=0)
-        self.labels_entry = Entry(self.window_three, width=40)
-        self.labels_entry.grid(row=4, column=1)
-
-        self.checked_state = IntVar()
-        self.already_read_check = Checkbutton(self.window_three,
-                                              text="Already Read", variable=self.checked_state, command=self.checkbutton_used)
-        self.already_read_check.grid(row=5, column=0)
+        self.cancel_button = Button(
+            self.window_three, text="Cancel", command=self.cancel, highlightthickness=0)
+        self.cancel_button.grid(row=5, column=0)
 
         self.register = Button(self.window_three, text="Register Book", command=self.append_book,
                                highlightthickness=0, width=34)
         self.register.grid(row=5, column=1)
 
         self.window_three.mainloop()
-
-    def checkbutton_used(self):
-        print(self.checked_state.get())
 
     def search_book(self):
         self.init.brain.create_book(
@@ -59,16 +50,21 @@ class Append:
             book_key = self.init.brain.book_dict["key"]
         else:
             book_key = random.randint(1000, 99999)
+            repeated = self.init.brain.get_repeated_keys(book_key)
+            while repeated:
+                book_key = random.randint(1000, 99999)
+                repeated = self.init.brain.get_repeated_keys(book_key)
 
         self.book_data = {
 
             "key": book_key,
             "title": self.book_title_entry.get().title(),
             "author": self.author_entry.get().title(),
-            "keywords": self.labels_entry.get().title(),
-            "already": self.checked_state.get()
         }
 
         self.init.brain.add_to_file(self, self.book_data)
         self.window_three.destroy()
         self.init.refresh_window()
+
+    def cancel(self):
+        self.window_three.destroy()
